@@ -1,4 +1,13 @@
 const gameContainer = document.getElementById("game-container")
+const gamePlay = document.getElementById("gamePlay")
+const rock = document.getElementById("rock")
+const paper = document.getElementById("paper")
+const scissors = document.getElementById("scissors")
+const scoreboard =document.getElementById("scoreboard")
+
+let countHuman = 0;
+let countComputer = 0;
+
 
 function getComputerChoice() {
     let array = ["rock", "paper", "scissors"];
@@ -9,26 +18,69 @@ function getRandomInt(max) { //randomly picks index number for array
     return Math.floor(Math.random() * max);
 }
 
-function humanChoice() {
-    return "rock";
-}
+    //binding rock button (value) to our rock variable
+    rock.addEventListener("click", function(e) {
+        //console.log(e.target.value) //e is event, target of the event(rock element), value is the value of that target(the attribute value of the element)
+        selection = e.target.value
+        computerSelection = getComputerChoice();
+        //console.log(computerSelection)
+        playRound(selection, computerSelection)
+        //console.log("count human", countHuman)
+        //console.log("count computer: ", countComputer)
+        if(countHuman === 3 || countComputer === 3) {
+            console.log(countHuman)
+            console.log(countComputer)
+            endGame();
+        }
+    })
+    paper.addEventListener("click", function(e) {
+        //console.log(e.target.value) //e is event, target of the event(rock element), value is the value of that target(the attribute value of the element)
+        selection = e.target.value
+        computerSelection = getComputerChoice();
+        playRound(selection, computerSelection)
+        //console.log("count human", countHuman)
+        //console.log("count computer: ", countComputer)
+        if(countHuman === 3 || countComputer === 3) {
+            console.log(countHuman)
+            console.log(countComputer)
+            endGame();
+        }
+    })
+    scissors.addEventListener("click", function(e) {
+        //console.log(e.target.value) //e is event, target of the event(rock element), value is the value of that target(the attribute value of the element)
+        selection = e.target.value
+        computerSelection = getComputerChoice();
+        playRound(selection, computerSelection)
+       // console.log("count human", countHuman)
+        //console.log("count computer: ", countComputer)
+        if(countHuman === 3 || countComputer === 3) {
+            console.log(countHuman)
+            console.log(countComputer)
+            endGame();
+        }
+    })
+
 
 function playRound(playerSelection, computerSelection) {
-    // console.log("player selection: ", playerSelection)
-    // console.log("computer selection: ", computerSelection)
+
     if (playerSelection === "rock" && computerSelection === "paper") {
+        countComputer++;
         return "You lose! Paper beats Rock"
     }
     if (playerSelection === "paper" && computerSelection === "rock") {
+        countHuman++;
         return "You win! Paper beats Rock"
     }
     if (playerSelection === "scissors" && computerSelection === "rock") {
+        countComputer++;
         return "You lose! Rock beats Scissors"
     }
     if (playerSelection === "rock" && computerSelection === "scissors") {
+        countHuman++;
         return "You win! Rock beats Scissors"
     }
     if (playerSelection === "paper" && computerSelection === "scissors") {
+        countComputer++;
         return "You lose! Scissors beats paper"
     }
     if (playerSelection === computerSelection) {
@@ -36,30 +88,8 @@ function playRound(playerSelection, computerSelection) {
     }
 
 }
-//console.log(playRound(humanChoice(), getComputerChoice()))
 
-function playGame() {
-    let countHuman = 0;
-    let countComputer = 0;
 
-    while (countHuman < 3 && countComputer < 3) {
-        if (playRound(humanChoice(), getComputerChoice()) === "tie") {
-            console.log("tie")
-        }
-        if (playRound(humanChoice(), getComputerChoice()).includes("You lose!")) {
-            console.log("lose")
-            countComputer++;
-        }
-        if (playRound(humanChoice(), getComputerChoice()).includes("You win!")) {
-            console.log("win")
-            countHuman++;
-        }
-    }
-    // console.log(countHuman);
-    // console.log(countComputer);
-    endGame();
-}
-playGame();
 function endGame() {
     console.log("EndGame")
 }
