@@ -10,9 +10,13 @@
 
 <body>
     <div id="game-container" class="game-container">
+        <h1>Rock Paper Scissors</h1>
+        <h2>First to 3 wins!</h2>
 
-        <div id="gameplay" class="gameplay">
-            <h2>Game Play</h2>
+        <div id="scoreboard" class="scoreboard">
+            <h2>Scoreboard</h2>
+            <p>Human Points: <span id="humanScore" class="humanScore">0</span></p>
+            <p>Computer Points: <span id="computerScore" class="computerScore">0</span></p>
         </div>
 
         <div class="button-div">
@@ -21,8 +25,11 @@
             <button id="scissors" class="scissors" value="scissors">Scissors</button>
         </div>
 
-        <div id="scoreboard" class="scoreboard">
-            <h2>Scoreboard</h2>
+        <div id="gameplay" class="gameplay">
+            <h2>Game Play</h2>
+            <div id="gameplayDisplay" class="gameplayDisplay">
+
+            </div>
         </div>
 
     </div>

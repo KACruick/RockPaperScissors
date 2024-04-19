@@ -4,6 +4,10 @@ const rock = document.getElementById("rock")
 const paper = document.getElementById("paper")
 const scissors = document.getElementById("scissors")
 const scoreboard = document.getElementById("scoreboard")
+const humanScore = document.getElementById("humanScore")
+const computerScore = document.getElementById("computerScore")
+const gameplayDisplay = document.getElementById("gameplayDisplay")
+
 
 let countHuman = 0;
 let countComputer = 0;
@@ -55,36 +59,52 @@ scissors.addEventListener("click", function (e) {
 
 
 function playRound(playerSelection, computerSelection) {
-
+    let displayGameplayMessage;
+    
     if (playerSelection === "rock" && computerSelection === "paper") {
         countComputer++;
-        return "You lose! Paper beats Rock"
+        displayGameplayMessage = "You lose! Paper beats Rock"
     }
     if (playerSelection === "paper" && computerSelection === "rock") {
         countHuman++;
-        return "You win! Paper beats Rock"
+        displayGameplayMessage = "You win! Paper beats Rock"
     }
     if (playerSelection === "scissors" && computerSelection === "rock") {
         countComputer++;
-        return "You lose! Rock beats Scissors"
+        displayGameplayMessage = "You lose! Rock beats Scissors"
     }
     if (playerSelection === "rock" && computerSelection === "scissors") {
         countHuman++;
-        return "You win! Rock beats Scissors"
+        displayGameplayMessage = "You win! Rock beats Scissors"
     }
     if (playerSelection === "paper" && computerSelection === "scissors") {
         countComputer++;
-        return "You lose! Scissors beats paper"
+        displayGameplayMessage = "You lose! Scissors beats paper"
+    }
+    if (playerSelection === "scissors" && computerSelection === "paper") {
+        countHuman++;
+        displayGameplayMessage = "You win! Scissors beats paper"
     }
     if (playerSelection === computerSelection) {
-        return "tie"
+        displayGameplayMessage = "tie"
     }
-
+    gameplayDisplay.innerHTML += `<p class="message">Human: ${playerSelection}, Computer: ${computerSelection}</p>
+        <p class="message"><strong>${displayGameplayMessage}</strong></p>`
+    humanScore.innerHTML = countHuman;
+    computerScore.innerHTML = countComputer;
+    
 }
 
 
 function endGame() {
-    console.log(countHuman)
-    console.log(countComputer)
-    console.log("EndGame")
+    // const endgameDiv = document.createElement("div");
+    // const endGameTitle = document.createElement("h1");
+    // endgameDiv.append(endGameTitle);
+    // endGameTitle.textContent = "GAME OVER";
+    // endGameTitle.setAttribute("class", "endGameTitle");
+    gameContainer.innerHTML = `<div class="gameOver"><h1 class="endgameTitle">GAME OVER</h1>
+    ${countHuman > countComputer ? "Human wins": "Computer wins"}
+    <p>human score: ${countHuman}</p>
+    <p>computer score: ${countComputer}</p>
+    </div>`
 }
